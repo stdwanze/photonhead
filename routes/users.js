@@ -1,9 +1,37 @@
 var express = require('express');
 var router = express.Router();
-
+var spark = require('./models/devices');
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/photon/devices', function(req, res) {
+  spark.getDevices(function (devices){
+      
+       res.render('photon',{ devices: devices});
+  })
+  
+ 
+  });
 
+router.post('/photon/devices/toggle', function (req, res){
+    /*Each device has the following parameters:
+name
+connected
+variables
+functions
+version
+requiresUpgrade
+Commands
+And you can call the following commands on it:
+CALLFUNCTION
+
+Call a function in device
+*/
+    var id = req.body.id;
+    var val = req.body.value;
+    console.log("id: "+id + " val: "+val);
+ 
+    spark.callDeviceFunc(id,"led",val,function (ret){
+        res.json(ret);
+    });
+   
+})
 module.exports = router;

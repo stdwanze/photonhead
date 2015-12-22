@@ -22,7 +22,7 @@ var HOST = 'localhost';
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || PORT);
+var port = PORT;
 app.set('port', port);
 
 /**
@@ -35,7 +35,7 @@ var server = https.createServer(https_options, app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, HOST);
 server.on('error', onError);
 server.on('listening', onListening);
 
@@ -98,3 +98,4 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
