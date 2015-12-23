@@ -2,12 +2,13 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
- 
+  p Welcome to PhotonAccess
   if isAuthenticated
-   p #{user.email}
-     a(href='/logout') logout 
-   a(href='/photon/devices') Photon
+        p #{user.email}
+        div 
+                a(href='/photon/devices') Photon
+        div 
+                a(href='/photon/particleinfo') Settings
   else
     unautherized
      a(href='/login') Login here

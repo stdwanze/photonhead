@@ -1,8 +1,9 @@
 
 var callback, devices;
 var spark = require('spark');
+var _token = null;
+var _inited = false;
 
-spark.login({accessToken: 'fdc2e9b4db16cc1af38d53d612ca4a332dfee032'});
 
 var clear = function (){
     callback = null;
@@ -54,6 +55,16 @@ var accessDevice= function (id, funcName, value, callback)
 
 }
 module.exports = {
+    init: function (cb){
+       if(!_inited && _token != null)
+       {
+           spark.login({accessToken: _token},cb);
+       } 
+    },
+    setAccessToken : function (token)
+    {
+        _token = token;
+    },
     getDevices:    function (cb){
     clear();
     callback = cb;

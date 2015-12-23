@@ -6,14 +6,15 @@ block content
   h1= title
   p Welcome to #{title}
   p Devices :
-  ul
-  each val in devices
-    li= val.name
-        ul
-            li IP: #{val.lastIpAddress}
-            li last contact: #{val.lastHeard}
-            li connected: #{val.connected}
-            #LED 
-        button(onClick=('toggleLED("' + val.id + '")')) ToggleLED
+  if devicesFound
+    ul
+    each val in devices
+        li= val.name
+            ul
+                li IP: #{val.lastIpAddress}
+                li last contact: #{val.lastHeard}
+                li connected: #{val.connected}
+                #LED 
+            button(onClick=('toggleLED("' + val.id + '")')) ToggleLED
        
       

@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    block head
+        p Current AccessToken: #{access_t}
+
+    block f
+        form(name="particleinfo", action="/photon/setinfo", method="post")
+            p AccessToken
+            input(type="text", name="access_token", placeholder="access_token")
+            input(type="submit", value="login")
+      
+      
+     a(href='/photon/devices') Devices

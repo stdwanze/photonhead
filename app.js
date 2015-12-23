@@ -137,9 +137,7 @@ app.get('/', function(req, res){
   res.render('index', { user: req.user, isAuthenticated: req.isAuthenticated() });
 });
 
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user });
-});
+
 
 app.get('/login',
   passport.authenticate('azuread-openidconnect', { failureRedirect: '/login' }),
